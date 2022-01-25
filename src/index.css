@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
-
 body {
   margin: 0;
-  font-family: 'Dongle', 'Segoe UI', 'Roboto', sans-serif;
-  font-size: 1.6em;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

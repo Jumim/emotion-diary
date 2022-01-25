@@ -25,9 +25,7 @@
     "strictNullChecks": true
   },
   "compilerOptions": {
-  "baseUrl": "src"
+    "baseUrl": "src"
   },
-  "include": [
-    "./src/**/*.ts"
-  ]
+  "include": ["src"]
 }
