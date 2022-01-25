@@ -3,6 +3,7 @@
 body {
   margin: 0;
   font-family: 'Dongle', 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 1.6em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
