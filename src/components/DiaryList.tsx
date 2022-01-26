@@ -1,0 +1,82 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from './Button';
+
+interface optionType {
+  value: string
+  name: string
+}
+
+const sortList: optionType[] = [
+  { value: 'lastest', name: '최신순' },
+  { value: 'oldest', name: '오래된 순' }
+]
+
+const filterList: optionType[] = [
+  { value: 'all', name: '전부' },
+  { value: 'good', name: '좋은 감정만' },
+  { value: 'bad', name: '안좋은 감정만' }
+]
+
+const Menu = ({ value, onChange, optionList }: any) => {
+  console.log(optionList);
+
+  return (
+    <select value={value} onChange={(e) => onChange(e.target.value)}>
+      {optionList.map((data: any) => {
+        <option value={data.value}>{data.name}</option>
+      })}
+    </select>
+  );
+}
+
+export const DiaryList = ({ list }: any) => {
+  const navi = useNavigate();
+
+  const [sortType, setSortType] = useState('lastest');
+  const [filterType, setFilterType] = useState('all');
+
+  const getDiaryList = () => {
+    const filterCallBack = (item: any) => {
+      if(filterType === 'good') {
+        return parseInt(item.emotion) >= 3;
+      } else {
+        return parseInt(item.emotion) < 3;
+      }
+    }
+
+    const compare = (a: any, b: any) => {
+      if (sortType === 'lastest') {
+        return parseInt(b.date) - parseInt(a.date);
+      } else {
+        return parseInt(a.date) - parseInt(b.date);
+      }
+    }
+
+    const diaryList = JSON.parse(JSON.stringify(list));
+    const fillteredList = (filterType === 'all') ? diaryList : diaryList.filter((el: any) => filterCallBack(el));
+    const sortedList = fillteredList.sort(compare);
+
+    return sortedList;
+  }
+
+  return (
+    <div className='DiaryList'>
+      <Menu
+        value={sortType}
+        onChange={setSortType}
+        optionList={sortList}
+      />
+      <Menu
+        value={filterType}
+        onChange={setFilterType}
+        optionList={filterList}
+      />
+      <Button
+        text='새 일기 쓰기'
+        type='positive'
+        onClick={() => navi('/new')}
+      />
+    </div>
+  );
+}

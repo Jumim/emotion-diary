@@ -5,28 +5,84 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: 'Dongle', 'Segoe UI', 'Roboto', sans-serif;
-  font-size: 1.6em;
+  font-family: 'Dongle', 'Roboto', sans-serif;
+  font-size: 1.8rem;
   background-color: #f6f6f6;
   margin: 0;
 }
 
-@@media (min-width: 650px) {
+@media (min-width: 650px) {
   .App {
     width: 640px;
   }
 }
 
-@@media (max-width: 650px) {
+@media (max-width: 650px) {
   .App {
     width: 90vw;
   }
 }
 
 #root {
-  background-color: #fffff;
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .App {
+  min-height: 100vh;
+  padding: 0 20px;
+}
 
+/* Button */
+.MyButton {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.6rem;
+  font-family: 'Dongle';
+  white-space: nowrap;
+}
+
+.MyButton_default {
+  color: #000;
+  background-color: #ececec;
+}
+
+.MyButton_positive {
+  color: #fff;
+  background-color: #64c964;
+}
+
+.MyButton_negative {
+  color: #fff;
+  background-color: #fd565f;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+  padding: 20px 0;
+}
+
+header > div {
+  display: flex;
+}
+
+header .header_text {
+  width: 50%;
+  font-size: 1.8rem;
+  justify-content: center;
+}
+
+header .header_left {
+  width: 25%;
+  justify-content: start;
+}
+
+header .header_right {
+  width: 25%;
+  justify-content: end;
 }

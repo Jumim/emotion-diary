@@ -24,10 +24,7 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true
   },
-  "compilerOptions": {
-    "baseUrl": "src"
-  },
   "include": [
-    "./src/**/*.tsx"
+    "src"
   ]
 }
