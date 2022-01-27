@@ -8,13 +8,17 @@ interface diaryItem {
 }
 
 export const DiaryItem:React.FC<diaryItem> = ({id, date, content, emotion}) => {
-  console.log(`id = ${id}`);
-  console.log(`date = ${date}`);
-  console.log(`content = ${content}`);
-  console.log(`emotion = ${emotion}`);
+  console.log(id);
 
   return (
     <div className='DiaryItem'>
+      <div className={`emotion_img_wrapper emotion_img_wrapper_${emotion}`}>
+        <img src={process.env.PUBLIC_URL + `/images/emotion${emotion}.png`} />
+      </div>
+      <div className='info_wrapper'>
+        <div className='diary_date'>{date}</div>
+        <div className='diary_content_preview'>{content}</div>
+      </div>
     </div>
   );
 }

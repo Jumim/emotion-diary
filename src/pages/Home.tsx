@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { DiaryStateContext } from '../App';
 import { Header, Button, DiaryList } from '../components';
 
 export const Home = () => {
+  const data = useContext(DiaryStateContext);
   const [day, setDay] = useState(new Date());
   const header_text = `${day.getFullYear()}년 ${day.getMonth()+1}월`;
 
@@ -26,7 +28,7 @@ export const Home = () => {
         right={<Button text={'▶'} type='default' onClick={() => nextMonth()} />}
         text={header_text}
       />
-      <DiaryList list={[]} />
+      <DiaryList list={data} />
     </div>
   );
 }

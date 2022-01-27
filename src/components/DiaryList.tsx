@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './Button';
+import { DiaryItem } from './DiaryItem';
 
 interface optionType {
   value: string
@@ -80,6 +81,11 @@ export const DiaryList = ({ list }: any) => {
             onClick={() => navi('/new')}
           />
         </div>
+        {
+          list.map((data: any) => {
+            <DiaryItem {...data} />
+          })
+        }
       </div>
     </div>
   );
