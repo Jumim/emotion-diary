@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface headerType {
-  left: React.ReactChild | React.ReactChild[] | React.ReactChildren | React.ReactChildren[]
-  right: React.ReactChild | React.ReactChild[] | React.ReactChildren | React.ReactChildren[]
+  left?: React.ReactChild | React.ReactChild[] | React.ReactChildren | React.ReactChildren[]
+  right?: React.ReactChild | React.ReactChild[] | React.ReactChildren | React.ReactChildren[]
   text: string
 }
 

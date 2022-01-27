@@ -19,13 +19,11 @@ const filterList: optionType[] = [
 ]
 
 const Menu = ({ value, onChange, optionList }: any) => {
-  console.log(optionList);
-
   return (
-    <select value={value} onChange={(e) => onChange(e.target.value)}>
-      {optionList.map((data: any) => {
-        <option value={data.value}>{data.name}</option>
-      })}
+    <select value={value} onChange={(e) => onChange(e.target.value)} className='ControlMenu'>
+      {optionList.map((data: optionType, index: number) =>
+        <option key={`value_${index}`} value={data.value}>{data.name}</option>
+      )}
     </select>
   );
 }
@@ -38,7 +36,7 @@ export const DiaryList = ({ list }: any) => {
 
   const getDiaryList = () => {
     const filterCallBack = (item: any) => {
-      if(filterType === 'good') {
+      if (filterType === 'good') {
         return parseInt(item.emotion) >= 3;
       } else {
         return parseInt(item.emotion) < 3;
@@ -62,21 +60,27 @@ export const DiaryList = ({ list }: any) => {
 
   return (
     <div className='DiaryList'>
-      <Menu
-        value={sortType}
-        onChange={setSortType}
-        optionList={sortList}
-      />
-      <Menu
-        value={filterType}
-        onChange={setFilterType}
-        optionList={filterList}
-      />
-      <Button
-        text='새 일기 쓰기'
-        type='positive'
-        onClick={() => navi('/new')}
-      />
+      <div className='menu_wrapper'>
+        <div className='left_col'>
+          <Menu
+            value={sortType}
+            onChange={setSortType}
+            optionList={sortList}
+          />
+          <Menu
+            value={filterType}
+            onChange={setFilterType}
+            optionList={filterList}
+          />
+        </div>
+        <div className='right_col'>
+          <Button
+            text='새 일기 쓰기'
+            type='positive'
+            onClick={() => navi('/new')}
+          />
+        </div>
+      </div>
     </div>
   );
 }

@@ -11,6 +11,10 @@ body {
   margin: 0;
 }
 
+button, select, input, textarea {
+  font-family: 'Dongle';
+}
+
 @media (min-width: 650px) {
   .App {
     width: 640px;
@@ -39,8 +43,7 @@ body {
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  font-size: 1.6rem;
-  font-family: 'Dongle';
+  font-size: 1.4rem;
   white-space: nowrap;
 }
 
@@ -85,4 +88,38 @@ header .header_left {
 header .header_right {
   width: 25%;
   justify-content: end;
+}
+
+/* DiaryList */
+.DiaryList .menu_wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 30px 0;
+}
+
+.DiaryList .menu_wrapper .right_col {
+  flex-grow: 1;
+}
+
+.DiaryList .menu_wrapper .right_col button {
+  width: 100%;
+}
+
+.DiaryList .ControlMenu {
+  cursor: pointer;
+  font-size: 1.4rem;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding: 10px 20px;
+}
+
+/* datepicker */
+.DayPickerInput input {
+  font-size: 1.4rem;
+}
+
+.DayPickerInput-OverlayWrapper {
+  
 }

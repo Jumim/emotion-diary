@@ -42,7 +42,7 @@ const App = () => {
     dispatch({
       type: 'EDIT',
       data: {
-        id,
+        id: id,
         date,
         content,
         emotion
