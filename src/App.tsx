@@ -14,6 +14,8 @@ const App = () => {
 
   // 일기 생성
   const onCreate = (date: any, content: string, emotion: string) => {
+    console.log('일기 생성');
+
     dispatch({
       type: 'CREATE',
       data: {
@@ -29,6 +31,8 @@ const App = () => {
 
   // 일기 삭제
   const onRemove = (id: number) => {
+    console.log('일기 삭제');
+
     dispatch({
       type: 'REMOVE',
       data: {
@@ -39,6 +43,8 @@ const App = () => {
 
   // 일기 수정
   const onEdit = (id: number, date: any, content: string, emotion: string) => {
+    console.log('일기 수정');
+
     dispatch({
       type: 'EDIT',
       data: {

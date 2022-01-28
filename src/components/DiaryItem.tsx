@@ -7,9 +7,7 @@ interface diaryItem {
   emotion: number
 }
 
-export const DiaryItem:React.FC<diaryItem> = ({id, date, content, emotion}) => {
-  console.log(id);
-
+export const DiaryItem:React.FC<diaryItem> = ({date, content, emotion}) => {
   return (
     <div className='DiaryItem'>
       <div className={`emotion_img_wrapper emotion_img_wrapper_${emotion}`}>

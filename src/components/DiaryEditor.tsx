@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
@@ -27,9 +27,12 @@ const emotionItemList: emotionItemListType[] = [
 
 export const DiaryEditor = () => {
   const navi = useNavigate();
+
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [emotion, setEmotion] = useState(3);
   const [content, setContent] = useState('');
+  const contentRef: any = useRef();
+  
   const { onCreate }: any = useContext(DiaryDispatchContext);
 
   const handleEmotionChange = (id: number) => {
@@ -37,12 +40,13 @@ export const DiaryEditor = () => {
   }
 
   const handleSubmit = () => {
-    console.log(date);
-    console.log(content);
-    console.log(emotion);
+    if(content.length < 1) {
+      contentRef.current.focus();
+      return;
+    }
 
     onCreate(date, content, emotion);
-    navi('/');
+    navi('/', {replace: true});
   }
 
 
@@ -77,6 +81,7 @@ export const DiaryEditor = () => {
         <h4>오늘의 일기</h4>
         <div className="input_box text_wrapper">
           <textarea
+            ref={contentRef}
             placeholder='오늘은 어땠나요'
             onChange={(e: any) => setContent(e.target.value)}
           />

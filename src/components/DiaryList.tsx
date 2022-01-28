@@ -38,17 +38,20 @@ export const DiaryList = ({ list }: any) => {
   const getDiaryList = () => {
     const filterCallBack = (item: any) => {
       if (filterType === 'good') {
-        return parseInt(item.emotion) >= 3;
+        return parseInt(item.emotion) <= 3;
       } else {
-        return parseInt(item.emotion) < 3;
+        return parseInt(item.emotion) > 3;
       }
     }
 
     const compare = (a: any, b: any) => {
+      const a_date: any = new Date(a);
+      const b_date: any = new Date(b);
+
       if (sortType === 'lastest') {
-        return parseInt(b.date) - parseInt(a.date);
+        return (b_date) - parseInt(a_date);
       } else {
-        return parseInt(a.date) - parseInt(b.date);
+        return parseInt(a_date) - parseInt(b_date);
       }
     }
 
@@ -57,7 +60,7 @@ export const DiaryList = ({ list }: any) => {
     const sortedList = fillteredList.sort(compare);
 
     return sortedList;
-  }
+  };
 
   return (
     <div className='DiaryList'>
@@ -81,12 +84,16 @@ export const DiaryList = ({ list }: any) => {
             onClick={() => navi('/new')}
           />
         </div>
-        {
-          list.map((data: any) => {
-            <DiaryItem {...data} />
-          })
-        }
       </div>
+      {
+        getDiaryList().map((data: any) => (
+          <DiaryItem key={`diaryItem_${data.id}`} {...data} />
+        ))
+      }
     </div>
   );
 }
+
+DiaryList.defaultProps = {
+  list: []
+};
