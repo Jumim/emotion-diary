@@ -6,7 +6,7 @@ export const Home = () => {
   const data = useContext(DiaryStateContext);
   const [day, setDay] = useState(new Date());
   const header_text = `${day.getFullYear()}년 ${day.getMonth()+1}월`;
-
+  
   // 저번달
   const prevMonth = () => {
     setDay(

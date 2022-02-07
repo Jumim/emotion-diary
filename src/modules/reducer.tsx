@@ -22,9 +22,13 @@ export const reducer = (state: any, action: actionType): any => {
     }
     case 'REMOVE': {
       newState = state.filter((el: any) => el.id !== action.data.id);
+
+      console.log('state >> ' +JSON.stringify(state));
+      console.log('action.data.id >> ' +action.data.id);
+      console.log('newState >> ' +JSON.stringify(newState));
       break;
     }
-    case 'Edit': {
+    case 'EDIT': {
       newState = state.map(
         (el: any) => el.id === action.data.id ?
           {

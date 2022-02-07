@@ -45,13 +45,13 @@ export const DiaryList = ({ list }: any) => {
     }
 
     const compare = (a: any, b: any) => {
-      const a_date: any = new Date(a);
-      const b_date: any = new Date(b);
+      const a_date: any = new Date(a.date).getTime();
+      const b_date: any = new Date(b.date).getTime();
 
       if (sortType === 'lastest') {
-        return (b_date) - parseInt(a_date);
+        return b_date > a_date ? 1 : -1;
       } else {
-        return parseInt(a_date) - parseInt(b_date);
+        return a_date > b_date ? 1 : -1;
       }
     }
 

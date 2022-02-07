@@ -1,15 +1,9 @@
-import { useState, useContext, useRef } from 'react';
+import { useState, useContext, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 import { Button, EmotionItem } from '../components';
 import { DiaryDispatchContext } from '../App';
-
-interface stateType {
-  date: any
-  content: string
-  emotion: number
-}
 
 interface emotionItemListType {
   id: number
@@ -25,15 +19,23 @@ const emotionItemList: emotionItemListType[] = [
   { id: 5, name: '끔찍함', image: process.env.PUBLIC_URL + '/images/emotion5.png' }
 ];
 
-export const DiaryEditor = () => {
+export const DiaryEditor = ({originalData, isEdit}: any) => {
   const navi = useNavigate();
 
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [emotion, setEmotion] = useState(3);
   const [content, setContent] = useState('');
   const contentRef: any = useRef();
-  
-  const { onCreate }: any = useContext(DiaryDispatchContext);
+
+  const { onCreate, onEdit }: any = useContext(DiaryDispatchContext);
+
+  useEffect(() => {
+    if(isEdit) {
+      setDate(originalData.date);
+      setEmotion(originalData.emotion);
+      setContent(originalData.content);
+    }
+  }, [originalData]);
 
   const handleEmotionChange = (id: number) => {
     setEmotion(id);
@@ -45,7 +47,12 @@ export const DiaryEditor = () => {
       return;
     }
 
-    onCreate(date, content, emotion);
+    if(!isEdit) {
+      onCreate(date, content, emotion);
+    } else {
+      onEdit(originalData.id, date, content, emotion);
+    }
+
     navi('/', {replace: true});
   }
 
@@ -84,6 +91,7 @@ export const DiaryEditor = () => {
             ref={contentRef}
             placeholder='오늘은 어땠나요'
             onChange={(e: any) => setContent(e.target.value)}
+            defaultValue={content}
           />
         </div>
       </section>

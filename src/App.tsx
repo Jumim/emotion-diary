@@ -5,8 +5,15 @@ import { reducer } from './modules/reducer';
 import { Diary, Edit, Home, New } from './pages';
 import './App.css';
 
-export const DiaryStateContext = createContext(null);
+export const DiaryStateContext = createContext([]);
 export const DiaryDispatchContext = createContext(null);
+
+interface diaryItem {
+  id: number
+  date: any
+  content: string
+  emotion: number
+}
 
 const App = () => {
   const [data, dispatch] = useReducer(reducer, []);
@@ -36,7 +43,7 @@ const App = () => {
     dispatch({
       type: 'REMOVE',
       data: {
-        id
+        id: id
       }
     });
   }
@@ -56,10 +63,6 @@ const App = () => {
     });
   }
 
-  const store = {
-    data
-  };
-
   const memoizedDispatch: any = useMemo(() => {
     return { onCreate, onRemove, onEdit };
   }, []);
@@ -71,7 +74,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/diary/:id' element={<Diary />} />
-            <Route path='/edit' element={<Edit />} />
+            <Route path='/edit/:id' element={<Edit />} />
             <Route path='/new' element={<New />} />
           </Routes>
         </div>
