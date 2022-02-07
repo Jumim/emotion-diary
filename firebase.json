@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "public": "build",
+    "site": "jumi-udemy-project",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
