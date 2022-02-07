@@ -1,6 +1,6 @@
 //import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useReducer, useRef, createContext, useMemo } from 'react';
+import { useReducer, useRef, createContext, useMemo, useEffect } from 'react';
 import { reducer } from './modules/reducer';
 import { Diary, Edit, Home, New } from './pages';
 import './App.css';
@@ -15,9 +15,30 @@ interface diaryItem {
   emotion: number
 }
 
+const compare = (a: any, b: any) => {
+  const a_date: any = new Date(a.date).getTime();
+  const b_date: any = new Date(b.date).getTime();
+
+  return b_date > a_date ? 1 : -1;
+}
+
 const App = () => {
   const [data, dispatch] = useReducer(reducer, []);
   const newId = useRef(0);
+
+  useEffect(() => {
+    const localData = localStorage.getItem('diary');
+
+    if(localData) {
+      const diaryList = JSON.parse(localData).sort(compare);
+      newId.current = parseInt(diaryList[0].id) + 1;
+
+      dispatch({
+        type: 'INIT',
+        data: diaryList
+      });
+    }
+  }, []);
 
   // 일기 생성
   const onCreate = (date: any, content: string, emotion: string) => {

@@ -38,5 +38,6 @@ export const reducer = (state: any, action: actionType): any => {
       return state;
   }
 
+  localStorage.setItem('diary', JSON.stringify(newState));
   return newState;
 }
