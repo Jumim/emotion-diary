@@ -8,13 +8,6 @@ import './App.css';
 export const DiaryStateContext = createContext([]);
 export const DiaryDispatchContext = createContext(null);
 
-interface diaryItem {
-  id: number
-  date: any
-  content: string
-  emotion: number
-}
-
 const compare = (a: any, b: any) => {
   const a_date: any = new Date(a.date).getTime();
   const b_date: any = new Date(b.date).getTime();

@@ -1,4 +1,4 @@
-import { useState, useContext, useRef, useEffect } from 'react';
+import { useState, useContext, useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
@@ -22,11 +22,12 @@ export const DiaryEditor = ({originalData, isEdit}: any) => {
       setEmotion(originalData.emotion);
       setContent(originalData.content);
     }
+  // eslint-disable-next-line
   }, [originalData]);
 
-  const handleEmotionChange = (id: number) => {
+  const handleEmotionChange = useCallback((id: number) => {
     setEmotion(id);
-  }
+  }, []);
 
   const handleSubmit = () => {
     if(content.length < 1) {

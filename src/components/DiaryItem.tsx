@@ -15,7 +15,7 @@ export const DiaryItem:React.FC<diaryItem> = ({id, date, content, emotion}) => {
   return (
     <div className='DiaryItem'>
       <div className={`emotion_img_wrapper emotion_img_wrapper_${emotion}`} onClick={() => navi(`/diary/${id}`)}>
-        <img src={process.env.PUBLIC_URL + `/images/emotion${emotion}.png`} />
+        <img src={process.env.PUBLIC_URL + `/images/emotion${emotion}.png`} alt={`emotion_${emotion}`} />
       </div>
       <div className='info_wrapper' onClick={() => navi(`/diary/${id}`)}>
         <div className='diary_date'>{date}</div>

@@ -31,6 +31,7 @@ export const Edit = () => {
         navi('/', { replace: true });
       }
     }
+  // eslint-disable-next-line
   }, [id, list]);
 
   const onDelete = () => {

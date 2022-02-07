@@ -31,6 +31,7 @@ export const Diary = () => {
         navi('/', { replace: true });
       }
     }
+  // eslint-disable-next-line
   }, [id, list]);
 
   if(!data) {
@@ -51,7 +52,7 @@ export const Diary = () => {
           <section>
             <h4>오늘의 감정</h4>
             <div className={`diary_img_wrapper diary_img_wrapper_${data.emotion}`}>
-              <img src={emotionData.image} />
+              <img src={emotionData.image} alt={`emotion_${data.emotion}`}/>
               <div className='emotion_descript'>
                 {emotionData.name}
               </div>
@@ -64,8 +65,6 @@ export const Diary = () => {
             </div>
           </section>
         </article>
-
-
       </div>
     );
   }

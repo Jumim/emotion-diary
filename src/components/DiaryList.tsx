@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './Button';
 import { DiaryItem } from './DiaryItem';
@@ -19,7 +19,7 @@ const filterList: optionType[] = [
   { value: 'bad', name: '안좋은 감정만' }
 ]
 
-const Menu = ({ value, onChange, optionList }: any) => {
+const Menu = React.memo(({ value, onChange, optionList }: any) => {
   return (
     <select value={value} onChange={(e) => onChange(e.target.value)} className='ControlMenu'>
       {optionList.map((data: optionType, index: number) =>
@@ -27,7 +27,7 @@ const Menu = ({ value, onChange, optionList }: any) => {
       )}
     </select>
   );
-}
+});
 
 export const DiaryList = ({ list }: any) => {
   const navi = useNavigate();
