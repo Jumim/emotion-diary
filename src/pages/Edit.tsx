@@ -3,11 +3,18 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Header, Button, DiaryEditor } from '../components';
 import { DiaryStateContext, DiaryDispatchContext } from '../App';
 
+interface diaryItem {
+  id: number
+  date: any
+  content: string
+  emotion: number
+}
+
 export const Edit = () => {
   const navi = useNavigate();
   const { id }: any = useParams();
 
-  const [ data, setData ] = useState();
+  const [ data, setData ] = useState<diaryItem>();
   const list = useContext(DiaryStateContext);
 
   const { onRemove }: any = useContext(DiaryDispatchContext);
@@ -27,7 +34,10 @@ export const Edit = () => {
   }, [id, list]);
 
   const onDelete = () => {
-    onRemove(id);
+    if(window.confirm('정말 삭제하시겠습니까?')) {
+      onRemove(id);
+    }
+
     navi('/', {replace: true});
   }
 
